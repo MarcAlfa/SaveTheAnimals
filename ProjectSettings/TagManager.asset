@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: FAR
+    uniqueID: 3933778361
+    locked: 0
+  - name: MEDIUM
+    uniqueID: 2571335301
+    locked: 0
+  - name: FRONT
+    uniqueID: 4076960593
+    locked: 0
+  - name: TERRENO
+    uniqueID: 2087418469
+    locked: 0

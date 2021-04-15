@@ -4,18 +4,39 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    // stato del player
+    public enum PlayerStatus
+    {
+        Ground, Jump, Reload, Fire, FireAlto, Furia
+    }
+    public PlayerStatus xStatus;
+
+    // stato furia
+    public enum FuriaStatus { BIG, NORMAL };
+    public FuriaStatus xFuriaStatus;
+
     //[SerializeField] private LayerMask groundLayers;
-    [SerializeField] private float JumpForce = 2000F;
+    [SerializeField] private float JumpForce = 6.5f;
+    [SerializeField] private float JumpSpeed = 200f;
+    [SerializeField] private float FuriaTime = 14f;   // sec per furia, attulament utilizzabile una volta solo a livello
 
     private CharacterController xController;    // player controller
     private Animator xAnimator;                 // player animator
     //private float xGravity = Physics.gravity.y; // gravity from project settings
     //private Vector3 xPosition;                  // player position
     private Vector3 xMovement;                  // player position end
-    
+
     private bool isGround;                      // player is grounded
-    private int isFly = 0;                      // player is flying (100/?)
-    private int isFlyTot = 80;                  // tot frame per flying
+    //private int isFly = 0;                      // player is flying (100/?)
+    //private int isFlyTot = 80;                  // tot frame per flying
+
+    private float xTimeStart;
+    private float xTimeCurrent;
+    private float xTimeFuria;   //start time della furia
+
+    private Vector3 xFuriaDimStart;
+    private Vector3 xFuriaDimEnd;
 
 
     // Start is called before the first frame update
@@ -24,111 +45,143 @@ public class PlayerController : MonoBehaviour
         // inizializzazione
         xController = GetComponent<CharacterController>();
         xAnimator = GetComponent<Animator>();
+        xTimeStart = -1;
+        xTimeFuria = -1;
+        xFuriaStatus = FuriaStatus.NORMAL;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (xController == null)
+        {
+            Debug.LogError("CharacterController nullo!");
+        }
+        if (xAnimator == null)
+        {
+            Debug.LogError("Animator nullo!");
+        }
+
+        xTimeCurrent = Time.time;
+
         // true = contatto con ground
         isGround = xController.isGrounded;
-        //isGrounded = Physics.CheckSphere(transform.position, 0.5f, groundLayers, QueryTriggerInteraction.Ignore);
 
-        // current position of the player
-        //xPosition = this.transform.position;
+        // dimensione attuale del player
+        xFuriaDimStart = xController.transform.localScale;
 
-        // se ground non puo' essere fly
-        if (isGround)
+
+        // ** GROUND ********************************************
+        if ( isGround)
         {
-            isFly = 0;
+            if ( (xTimeStart == -1) || ( (xTimeCurrent - xTimeStart) > 0.5) ) 
+            //Debug.Log("isGround");
+            xStatus = PlayerStatus.Ground;
+            xTimeStart = -1;
         }
-
 
         // ** JUMP ********************************************
-        if (isGround && Input.GetButtonDown("Jump"))
+        if (xStatus == PlayerStatus.Ground && Input.GetButtonDown("Jump"))
         {
-            isFly = isFlyTot;
-            // MOVE - lo sposto in alto di pochissimo per staccarlo subito dal ground
-            if (xController != null)
-            {
-                xMovement.y = 0.1f;
-                // provo a spostarlo in alto di pochissimo per staccarlo dal ground
-                xController.Move(xMovement);
-                //this.transform.position = Vector3.Lerp(xCurrVelocity, xVelocity, 0.5f); //* Time.deltaTime);
-            }
-
-            // ANIM
-            if (xAnimator != null)
-            {
-                xAnimator.Play("Gioco.RUOTA", 0, 1f);
-            }
+            Debug.Log("JUMP");
+            xTimeStart = -1;
+            xStatus = PlayerStatus.Jump;
+            xAnimator.Play("Player.JUMP", 0, 1f);
         }
 
-
-        // ** CROUCH ********************************************
-        if (isGround && Input.GetButtonDown("Crouch"))
+        // ** FIRE ********************************************
+        if (xStatus == PlayerStatus.Ground && Input.GetButtonDown("Fire"))
         {
-            // anim
-            if (xAnimator != null)
-            {
-                xAnimator.PlayInFixedTime("Gioco.CROUCH", 0, 0.85f);
-            }
+            Debug.Log("FIRE");
+            xTimeStart = xTimeCurrent;
+            xStatus = PlayerStatus.Fire;
+            xAnimator.Play("Player.FIRE", 0, 0.1f);
         }
-
-
-        // ** SPARA ********************************************
-        if (isGround && Input.GetButtonDown("Sparo"))
-        {
-            // anim
-            if (xAnimator != null)
-            {
-                xAnimator.PlayInFixedTime("Gioco.SPARA", 0, 0);
-            }
-        }
-
 
         // ** RELOAD ********************************************
-        // dovra' essere riempito tutto il caricatore, quindi in base a quanto e' vuoto / 1 animazione per ogni proiettile da caricare
-        if (isGround && Input.GetButtonDown("Reload"))
+        if (xStatus == PlayerStatus.Ground && Input.GetButtonDown("Reload"))
         {
-            // anim
-            if (xAnimator != null)
+            Debug.Log("RELOAD");
+            xTimeStart = -1;
+            xStatus = PlayerStatus.Reload;
+            xAnimator.Play("Player.RELOAD", 0, 2f);
+        }
+
+        // ** FIRE ALTO ********************************************
+        if (xStatus == PlayerStatus.Ground && Input.GetButtonDown("FireAlto"))
+        {
+            Debug.Log("FIREALTO");
+            xTimeStart = -1;
+            xStatus = PlayerStatus.FireAlto;
+            xAnimator.Play("Player.FIREALTO", 0, 1f);
+        }
+
+        // ** FURIA********************************************
+        if (xStatus == PlayerStatus.Ground)
+        {
+            if ((xTimeFuria == -1) && (xFuriaStatus == FuriaStatus.NORMAL))  // solo una volta di puo' fare la FURIA
             {
-                xAnimator.PlayInFixedTime("Gioco.RELOAD", 0, 0);
+                if (Input.GetButtonDown("Furia"))
+                {
+                    Debug.Log("FURIA INIZIO");
+                    xTimeStart = -1;
+                    xTimeFuria = xTimeCurrent;
+                    xStatus = PlayerStatus.Furia;
+                    xAnimator.Play("Player.FURIA", 0, 1f);
+                }
+            }
+        }
+        if ( (xTimeFuria != -1) && (xFuriaStatus == FuriaStatus.NORMAL))
+        {
+            if ((xTimeCurrent - xTimeFuria) < FuriaTime)
+            {
+                if (xFuriaDimStart.y < 2.00000000001)
+                {
+                    xFuriaDimEnd = new Vector3(2f, 2f, 2f);
+                    xController.transform.localScale += (xFuriaDimEnd * Time.deltaTime);
+                }
+            }
+            else
+            {
+                Debug.Log("FURIA INDIETRO");
+                xTimeFuria = xTimeCurrent;
+                xFuriaStatus = FuriaStatus.BIG;
+            }
+        }
+        if ((xTimeFuria != -1) && (xFuriaStatus == FuriaStatus.BIG))
+        {
+            if ((xTimeCurrent - xTimeFuria) < (FuriaTime*2))
+            {
+                if (xFuriaDimStart.y > 1.00000000001)
+                {
+                    xFuriaDimEnd = new Vector3(1f, 1f, 1f);
+                    xController.transform.localScale -= (xFuriaDimEnd * Time.deltaTime);
+                }
+            }
+            else
+            {
+                Debug.Log("FURIA FINE");
+                xTimeFuria = -1;
+                xFuriaStatus = FuriaStatus.NORMAL;
             }
         }
 
-        // ** FIRE1 ********************************************
-        // sparo potente, solo 1 .. devono passare poi x sec per riaverlo
-        // il caricatore nella GUI si illumina, dopo sparo si spegna e torna con numero proiettili "normali" che aveva prima
-        if (isGround && Input.GetButtonDown("Fire1"))
+
+        // ** FIRE3 ********************************************
+        //if (xStatus == PlayerStatus.Ground && Input.GetButtonDown("Fire3"))
+        //{
+        //    Debug.Log("FIRE3");
+        //    xTimeStart = -1;
+        //    xStatus = PlayerStatus.Fire3;
+        //    xAnimator.Play("Player.AUTOSHOT", 0, 0.6f);
+        //}
+
+        // sposto leggermente in su per staccarlo dal ground..il primo frame
+        if (xStatus != PlayerStatus.Ground)
         {
-            // anim
-            if (xAnimator != null)
-            {
-                xAnimator.PlayInFixedTime("Gioco.FIRE1", 0, 1f);
-            }
+                xMovement.y = 0.01f;
+                xController.Move(xMovement);
         }
-
-
-        // ** FIRE2 ********************************************
-        // animazione e sound: dice semplicemente "brutta merda"
-        // si puo fare che se subito dopo si ammazza un nemico punteggio vale di piu. pero' non si deve poter fare sempre
-        // se lo si fa prima di uccidere un animale si perde di piu' del normale anche
-        if (isGround && Input.GetButtonDown("Fire2"))
-        {
-            // anim
-            if (xAnimator != null)
-            {
-                xAnimator.PlayInFixedTime("Gioco.FIRE2", 0, 1f);
-            }
-
-            // azioni
-            if (xController != null)
-            {
-                //
-            }
-        }
-
 
     }
 
@@ -137,14 +190,58 @@ public class PlayerController : MonoBehaviour
     // Update is called fixed rate per second
     void FixedUpdate()
     {
+
         // JUMP
-        // MOVE  -- praticamente completo l'animazione in 100 fixedupdate, ma cmq si ferma quando tocca terra (isground)
-        if (xController != null && isFly > 0)
+        if (xStatus == PlayerStatus.Jump)
         {
-            xMovement.y = JumpForce / isFlyTot; 
-            xController.Move(xMovement * Time.deltaTime);
-            isFly -= 1;
+            xMovement.y = JumpForce;
+            xController.Move(xMovement * (JumpSpeed/100) * Time.deltaTime);
+            return;
         }
+
+        // FIRE
+        if (xStatus == PlayerStatus.Fire)
+        {
+            xMovement.y = JumpForce / 3f;
+            xController.Move(xMovement * (JumpSpeed / 200) * Time.deltaTime);
+            return;
+        }
+
+        // RELOAD
+        //if (xStatus == PlayerStatus.Reload && (xTimeCurrent - xTimeStart) < 0.2)
+        if (xStatus == PlayerStatus.Reload)
+        {
+            xMovement.y = JumpForce;
+            xController.Move(xMovement * (JumpSpeed/250) * Time.deltaTime);
+            return;
+        }
+
+        // FIRE ALTO
+        if (xStatus == PlayerStatus.FireAlto)
+        {
+            xMovement.y = JumpForce;
+            xController.Move(xMovement * (JumpSpeed / 160) * Time.deltaTime);
+            return;
+        }
+
+        // FURIA
+        if (xStatus == PlayerStatus.Furia)
+        {
+            xMovement.y = JumpForce;
+            xController.Move(xMovement * (JumpSpeed / 120) * Time.deltaTime);
+            return;
+        }
+
+
+        // FIRE3
+        //if (xStatus == PlayerStatus.Fire3)
+        //{
+        //    xMovement.y = JumpForce;
+        //    xController.Move(xMovement * (JumpSpeed / 100) * Time.deltaTime);
+        //    return;
+        //}
+
+
     }
 
 }
