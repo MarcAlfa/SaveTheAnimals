@@ -6,25 +6,29 @@ public class PlayerController : MonoBehaviour
 {
 
     // stato del player
-    public enum PlayerStatus
+    public enum ePlayerStatus
     {
         Ground, Jump, Reload, Fire, FireAlto, Furia
     }
-    public PlayerStatus xStatus;
+    public ePlayerStatus PlayerStatus;
 
     // stato furia
-    public enum FuriaStatus { BIG, NORMAL };
-    public FuriaStatus xFuriaStatus;
+    public enum eFuriaStatus { BIG, NORMAL };
+    public eFuriaStatus FuriaStatus;
+
+    public float FuriaTime = 14f;                 // secondi per furia, *2 per riaverla dopo usata
+    public float FuriaTimeStatus = -1;            //start time della furia, -1 disponibile, altrimenti effetto furia = FuriaTime, ridisponibile a = FuriaTime*2
 
     //[SerializeField] private LayerMask groundLayers;
-    [SerializeField] private float JumpForce = 6.5f;
-    [SerializeField] private float JumpSpeed = 200f;
-    [SerializeField] private float FuriaTime = 14f;   // sec per furia, attulament utilizzabile una volta solo a livello
+    public float JumpForce = 6.5f;
+    public float JumpSpeed = 200f;
+
 
     private CharacterController xController;    // player controller
     private Animator xAnimator;                 // player animator
+    private SoundManager xAudioManager;        // per suoni
     //private float xGravity = Physics.gravity.y; // gravity from project settings
-    //private Vector3 xPosition;                  // player position
+    private Vector3 yMovement;                  // player position end
     private Vector3 xMovement;                  // player position end
 
     private bool isGround;                      // player is grounded
@@ -33,10 +37,10 @@ public class PlayerController : MonoBehaviour
 
     private float xTimeStart;
     private float xTimeCurrent;
-    private float xTimeFuria;   //start time della furia
 
     private Vector3 xFuriaDimStart;
     private Vector3 xFuriaDimEnd;
+    private Vector3 xFuriaPosition;
 
 
     // Start is called before the first frame update
@@ -45,22 +49,16 @@ public class PlayerController : MonoBehaviour
         // inizializzazione
         xController = GetComponent<CharacterController>();
         xAnimator = GetComponent<Animator>();
+        xAudioManager = FindObjectOfType<SoundManager>();
+
         xTimeStart = -1;
-        xTimeFuria = -1;
-        xFuriaStatus = FuriaStatus.NORMAL;
+        FuriaTimeStatus = -1;
+        FuriaStatus = eFuriaStatus.NORMAL;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (xController == null)
-        {
-            Debug.LogError("CharacterController nullo!");
-        }
-        if (xAnimator == null)
-        {
-            Debug.LogError("Animator nullo!");
-        }
 
         xTimeCurrent = Time.time;
 
@@ -69,118 +67,137 @@ public class PlayerController : MonoBehaviour
 
         // dimensione attuale del player
         xFuriaDimStart = xController.transform.localScale;
+        // posizione attuale del player
+        xFuriaPosition = xController.transform.position;
 
 
         // ** GROUND ********************************************
         if ( isGround)
         {
             if ( (xTimeStart == -1) || ( (xTimeCurrent - xTimeStart) > 0.5) ) 
-            //Debug.Log("isGround");
-            xStatus = PlayerStatus.Ground;
+            PlayerStatus = ePlayerStatus.Ground;
             xTimeStart = -1;
         }
 
         // ** JUMP ********************************************
-        if (xStatus == PlayerStatus.Ground && Input.GetButtonDown("Jump"))
+        if (PlayerStatus == ePlayerStatus.Ground && Input.GetButtonDown("JUMP"))
         {
-            Debug.Log("JUMP");
             xTimeStart = -1;
-            xStatus = PlayerStatus.Jump;
+            PlayerStatus = ePlayerStatus.Jump;
             xAnimator.Play("Player.JUMP", 0, 1f);
+            //xAudioManager.Play("JUMP",0);
+            //xAudioManager.Play("BELLS",0.5f);
+            xAudioManager.Play("STACCO", 0);
+            xAudioManager.Play("YEAH", 0.15f);
+            xAudioManager.Play("URLO", 2f);
         }
 
         // ** FIRE ********************************************
-        if (xStatus == PlayerStatus.Ground && Input.GetButtonDown("Fire"))
+        if (PlayerStatus == ePlayerStatus.Ground && Input.GetButtonDown("FIRE"))
         {
-            Debug.Log("FIRE");
             xTimeStart = xTimeCurrent;
-            xStatus = PlayerStatus.Fire;
+            PlayerStatus = ePlayerStatus.Fire;
             xAnimator.Play("Player.FIRE", 0, 0.1f);
+            xAudioManager.Play("STACCO", 0);
+            xAudioManager.Play("FIRE", 0.2f);    // da portare su bullet, non qui
         }
 
         // ** RELOAD ********************************************
-        if (xStatus == PlayerStatus.Ground && Input.GetButtonDown("Reload"))
+        if (PlayerStatus == ePlayerStatus.Ground && Input.GetButtonDown("RELOAD"))
         {
-            Debug.Log("RELOAD");
             xTimeStart = -1;
-            xStatus = PlayerStatus.Reload;
-            xAnimator.Play("Player.RELOAD", 0, 2f);
+            PlayerStatus = ePlayerStatus.Reload;
+            xAnimator.Play("Player.RELOAD", 0, 3f);
+            xAudioManager.Play("STACCO", 0);
+            xAudioManager.Play("RELOAD", 0.5f);
         }
 
         // ** FIRE ALTO ********************************************
-        if (xStatus == PlayerStatus.Ground && Input.GetButtonDown("FireAlto"))
+        if (PlayerStatus == ePlayerStatus.Ground && Input.GetButtonDown("FIREALTO"))
         {
-            Debug.Log("FIREALTO");
             xTimeStart = -1;
-            xStatus = PlayerStatus.FireAlto;
+            PlayerStatus = ePlayerStatus.FireAlto;
             xAnimator.Play("Player.FIREALTO", 0, 1f);
+            xAudioManager.Play("STACCO", 0);
+            xAudioManager.Play("FIREALTO", 0.9f);
         }
 
         // ** FURIA********************************************
-        if (xStatus == PlayerStatus.Ground)
+        if (PlayerStatus == ePlayerStatus.Ground)
         {
-            if ((xTimeFuria == -1) && (xFuriaStatus == FuriaStatus.NORMAL))  // solo una volta di puo' fare la FURIA
+            if ((FuriaTimeStatus == -1) && (FuriaStatus == eFuriaStatus.NORMAL))
             {
-                if (Input.GetButtonDown("Furia"))
+                if (Input.GetButtonDown("FURIA"))
                 {
-                    Debug.Log("FURIA INIZIO");
                     xTimeStart = -1;
-                    xTimeFuria = xTimeCurrent;
-                    xStatus = PlayerStatus.Furia;
+                    FuriaTimeStatus = xTimeCurrent;
+                    PlayerStatus = ePlayerStatus.Furia;
                     xAnimator.Play("Player.FURIA", 0, 1f);
+                    xAudioManager.Play("STACCO", 0);
                 }
             }
         }
-        if ( (xTimeFuria != -1) && (xFuriaStatus == FuriaStatus.NORMAL))
+        // NORMAL --> BIG
+        if ( (FuriaTimeStatus != -1) && (FuriaStatus == eFuriaStatus.NORMAL))
         {
-            if ((xTimeCurrent - xTimeFuria) < FuriaTime)
+            if ((xTimeCurrent - FuriaTimeStatus) < FuriaTime)
             {
                 if (xFuriaDimStart.y < 2.00000000001)
                 {
                     xFuriaDimEnd = new Vector3(2f, 2f, 2f);
                     xController.transform.localScale += (xFuriaDimEnd * Time.deltaTime);
                 }
+                if (xFuriaPosition.x < -17)
+                {
+                   //Debug.Log("pos=" + xFuriaPosition.x);
+                   xMovement.x = 1f;
+                   xController.Move(xMovement * Time.deltaTime);
+                   //xController.transform.position += (xMovement * Time.deltaTime);
+                }
             }
             else
             {
-                Debug.Log("FURIA INDIETRO");
-                xTimeFuria = xTimeCurrent;
-                xFuriaStatus = FuriaStatus.BIG;
+                FuriaTimeStatus = xTimeCurrent;
+                FuriaStatus = eFuriaStatus.BIG;
             }
         }
-        if ((xTimeFuria != -1) && (xFuriaStatus == FuriaStatus.BIG))
+        // BIG --> NORMAL
+        if ((FuriaTimeStatus != -1) && (FuriaStatus == eFuriaStatus.BIG))
         {
-            if ((xTimeCurrent - xTimeFuria) < (FuriaTime*2))
+            if ((xTimeCurrent - FuriaTimeStatus) < (FuriaTime*2))
             {
                 if (xFuriaDimStart.y > 1.00000000001)
                 {
                     xFuriaDimEnd = new Vector3(1f, 1f, 1f);
                     xController.transform.localScale -= (xFuriaDimEnd * Time.deltaTime);
                 }
+                if (xFuriaPosition.x > -22)
+                {
+                    //Debug.Log("pos=" + xFuriaPosition.x);
+                    xMovement.x = -1f;
+                    xController.Move( xMovement * Time.deltaTime);
+                    //xController.transform.position += (xMovement * Time.deltaTime);
+                }
+
             }
             else
             {
-                Debug.Log("FURIA FINE");
-                xTimeFuria = -1;
-                xFuriaStatus = FuriaStatus.NORMAL;
+                FuriaTimeStatus = -1;
+                FuriaStatus = eFuriaStatus.NORMAL;
             }
         }
 
 
         // ** FIRE3 ********************************************
-        //if (xStatus == PlayerStatus.Ground && Input.GetButtonDown("Fire3"))
-        //{
-        //    Debug.Log("FIRE3");
-        //    xTimeStart = -1;
-        //    xStatus = PlayerStatus.Fire3;
-        //    xAnimator.Play("Player.AUTOSHOT", 0, 0.6f);
-        //}
+
+
+
 
         // sposto leggermente in su per staccarlo dal ground..il primo frame
-        if (xStatus != PlayerStatus.Ground)
+        if (PlayerStatus != ePlayerStatus.Ground)
         {
-                xMovement.y = 0.01f;
-                xController.Move(xMovement);
+            yMovement.y = 0.01f;
+            xController.Move(yMovement);
         }
 
     }
@@ -192,54 +209,48 @@ public class PlayerController : MonoBehaviour
     {
 
         // JUMP
-        if (xStatus == PlayerStatus.Jump)
+        if (PlayerStatus == ePlayerStatus.Jump)
         {
-            xMovement.y = JumpForce;
-            xController.Move(xMovement * (JumpSpeed/100) * Time.deltaTime);
+            yMovement.y = JumpForce;
+            xController.Move(yMovement * (JumpSpeed/100) * Time.deltaTime);
             return;
         }
 
         // FIRE
-        if (xStatus == PlayerStatus.Fire)
+        if (PlayerStatus == ePlayerStatus.Fire)
         {
-            xMovement.y = JumpForce / 3f;
-            xController.Move(xMovement * (JumpSpeed / 200) * Time.deltaTime);
+            yMovement.y = JumpForce / 3f;
+            xController.Move(yMovement * (JumpSpeed / 200) * Time.deltaTime);
             return;
         }
 
         // RELOAD
-        //if (xStatus == PlayerStatus.Reload && (xTimeCurrent - xTimeStart) < 0.2)
-        if (xStatus == PlayerStatus.Reload)
+        //if (PlayerStatus == PlayerStatus.Reload && (xTimeCurrent - xTimeStart) < 0.2)
+        if (PlayerStatus == ePlayerStatus.Reload)
         {
-            xMovement.y = JumpForce;
-            xController.Move(xMovement * (JumpSpeed/250) * Time.deltaTime);
+            yMovement.y = JumpForce;
+            xController.Move(yMovement * (JumpSpeed/250) * Time.deltaTime);
             return;
         }
 
         // FIRE ALTO
-        if (xStatus == PlayerStatus.FireAlto)
+        if (PlayerStatus == ePlayerStatus.FireAlto)
         {
-            xMovement.y = JumpForce;
-            xController.Move(xMovement * (JumpSpeed / 160) * Time.deltaTime);
+            yMovement.y = JumpForce;
+            xController.Move(yMovement * (JumpSpeed / 160) * Time.deltaTime);
             return;
         }
 
         // FURIA
-        if (xStatus == PlayerStatus.Furia)
+        if (PlayerStatus == ePlayerStatus.Furia)
         {
-            xMovement.y = JumpForce;
-            xController.Move(xMovement * (JumpSpeed / 120) * Time.deltaTime);
+            yMovement.y = JumpForce;
+            xController.Move(yMovement * (JumpSpeed / 120) * Time.deltaTime);
             return;
         }
 
 
         // FIRE3
-        //if (xStatus == PlayerStatus.Fire3)
-        //{
-        //    xMovement.y = JumpForce;
-        //    xController.Move(xMovement * (JumpSpeed / 100) * Time.deltaTime);
-        //    return;
-        //}
 
 
     }
