@@ -26,7 +26,9 @@ public class PlayerController : MonoBehaviour
 
     private CharacterController xController;    // player controller
     private Animator xAnimator;                 // player animator
-    private SoundManager xAudioManager;        // per suoni
+    private SoundManager xAudioManager;         // per suoni
+    private FXManager xFXManager;               // per particles effects
+
     //private float xGravity = Physics.gravity.y; // gravity from project settings
     private Vector3 yMovement;                  // player position end
     private Vector3 xMovement;                  // player position end
@@ -42,6 +44,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 xFuriaDimEnd;
     private Vector3 xFuriaPosition;
 
+    private ParticleSystem xSmokeFX;
 
     // Start is called before the first frame update
     void Start()
@@ -50,10 +53,14 @@ public class PlayerController : MonoBehaviour
         xController = GetComponent<CharacterController>();
         xAnimator = GetComponent<Animator>();
         xAudioManager = FindObjectOfType<SoundManager>();
-
+        xFXManager = FindObjectOfType<FXManager>();
+        xSmokeFX = xFXManager.FindFXParticle("GunShot_Smoke_FX");
+        
         xTimeStart = -1;
         FuriaTimeStatus = -1;
         FuriaStatus = eFuriaStatus.NORMAL;
+        xAudioManager.Play("YEAH", 0.20f);
+
     }
 
     // Update is called once per frame
@@ -88,7 +95,7 @@ public class PlayerController : MonoBehaviour
             //xAudioManager.Play("JUMP",0);
             //xAudioManager.Play("BELLS",0.5f);
             xAudioManager.Play("STACCO", 0);
-            xAudioManager.Play("YEAH", 0.15f);
+            //xAudioManager.Play("YEAH", 0.15f);
             xAudioManager.Play("URLO", 2f);
         }
 
@@ -99,7 +106,8 @@ public class PlayerController : MonoBehaviour
             PlayerStatus = ePlayerStatus.Fire;
             xAnimator.Play("Player.FIRE", 0, 0.1f);
             xAudioManager.Play("STACCO", 0);
-            xAudioManager.Play("FIRE", 0.2f);    // da portare su bullet, non qui
+            xAudioManager.Play("FIRE", 0.2f);    // da portare su bullet, non qui??
+            xSmokeFX.Play();
         }
 
         // ** RELOAD ********************************************
