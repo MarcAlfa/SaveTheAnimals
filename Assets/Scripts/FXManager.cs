@@ -6,6 +6,8 @@ public class FXManager : MonoBehaviour
 {
     private ParticleSystem[] particles;
 
+    private ParticleSystem xWeedFX;
+
     public ParticleSystem FindFXParticle(string name)
     {
         particles = FindObjectsOfType<ParticleSystem>();
@@ -18,5 +20,11 @@ public class FXManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    private void Start()
+    {
+        //xWeedFX = this.FindFXParticle("FX_TumbleWeed");
+        //xWeedFX.Play();
     }
 }

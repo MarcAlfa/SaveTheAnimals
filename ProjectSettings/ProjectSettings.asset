@@ -127,7 +127,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.4c
+  bundleVersion: 0.4e
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -586,7 +586,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    1: POSEIDON;POSEIDON_URP
+    1: POSEIDON
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
