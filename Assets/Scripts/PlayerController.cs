@@ -263,4 +263,51 @@ public class PlayerController : MonoBehaviour
 
     }
 
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("player-coll-enter: " + collision.collider.name);
+    }
+    void OnCollisionStay(Collision collision)
+    {
+        Debug.Log("player-coll-stay: " + collision.collider.name);
+    }
+    void OnCollisionExit(Collision collision)
+    {
+        Debug.Log("player-coll-exit: " + collision.collider.name);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("player-trig-enter: " + other.name);
+    }
+    void OnTriggerStay(Collider other)
+    {
+        if (other.name != "Player")
+        {
+            Debug.Log("player-trig-stay: " + other.name);
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        Debug.Log("player-trig-exit: " + other.name);
+    }
+
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider.name != "Piano")
+        {
+            Debug.Log("on-collider=" + hit.collider.name);
+        }
+    }
+
+
+    void OnParticleCollision(GameObject other)
+    {
+        //Debug.Log("Player.OnParticleCollision-> " + other.name);
+        xAudioManager.Play("OUCH", 0);
+    }
+
+
 }

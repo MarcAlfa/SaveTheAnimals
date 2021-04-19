@@ -59,13 +59,14 @@
     <Compile Include="Assets\Scripts\BackScrolling.cs" />
     <Compile Include="Assets\Scripts\FXManager.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
+    <Compile Include="Assets\Scripts\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\AudioAnalyzer.cs" />
+    <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Audio.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />
-    <Compile Include="Assets\Scripts\EnemyManager.cs" />
-    <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\WeedCollider.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Shaders\CGIncludes\PUniforms.cginc" />
