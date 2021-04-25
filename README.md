@@ -1,6 +1,11 @@
 # SaveTheAnimals
 my first game in Unity
 
+0.5c 25.04.2021
+---------------
+nuovo back per animali + corretti alcuni bug
+---------------
+
 0.5b 25.04.2021
 ---------------
 pulizia completa asset, nessun rigerimento a liberie esterne

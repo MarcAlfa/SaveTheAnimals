@@ -21,7 +21,7 @@ public class FXManager : MonoBehaviour
     private void Update()
     {
         TimeCurrent = Time.time;
-        if (TimeCurrent - TimeStart > 2f)
+        if (TimeCurrent - TimeStart > 2.7f)
         {
             GameObject Weed = Instantiate(WeedObject);
             TimeStart = Time.time;
