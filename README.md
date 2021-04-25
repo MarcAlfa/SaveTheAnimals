@@ -2,6 +2,8 @@
 my first game in Unity
 
 
-0.3d 16.04.2021
+0.5a 24.04.2021
 ---------------
-input per comandare player completi + animazioni e suoni su azioni player
+personaggio con movimenti, suoni e animazioni e armi e danni + weed + pulizia asset
+---------------
+...
