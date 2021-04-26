@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class AnimalManager : MonoBehaviour
@@ -10,6 +11,7 @@ public class AnimalManager : MonoBehaviour
 
     private AnimalController AnimalContr;
     private float TimeCurrent;
+    private float TimeDif;
     private int TimeDec;
 
     // Start is called before the first frame update
@@ -20,27 +22,47 @@ public class AnimalManager : MonoBehaviour
     void FixedUpdate()
     {
         TimeCurrent = Time.time;
-
+        //Debug.Log("TimeCurrent -> " + TimeCurrent);
         if (Animals.Length > 0)
         {
             foreach (Animal xanimal in Animals)
             {
-                TimeDec = GetDecimal( (TimeCurrent + xanimal.AnimalStartDelay) / xanimal.AnimalRate);
-                if (TimeDec == 0 || TimeCurrent == xanimal.AnimalStartDelay)
+                if ( (TimeCurrent >= xanimal.AnimalStartDelay) && (xanimal.AnimalCount > 0) )
                 {
-                    Debug.Log("AVVIO -->  " + xanimal.AnimalPrefab.name);
-                    AnimalContr = xanimal.AnimalPrefab.GetComponent<AnimalController>();
-                    AnimalContr.Speed = xanimal.AnimalSpeed;
-                    Instantiate(xanimal.AnimalPrefab, this.transform);
+                    TimeDif = TimeCurrent - xanimal.AnimalStartDelay;
+                    TimeDec = GetDecimal(TimeCurrent / xanimal.AnimalRate);
+                    if (TimeDif == 0f || TimeDec == 0) 
+                    {
+                        AnimalContr = xanimal.AnimalPrefab.GetComponent<AnimalController>();
+                        AnimalContr.Speed = xanimal.AnimalSpeed;
+                        AnimalContr.PausaDelay = xanimal.AnimalPausaDelay;
+                        AnimalContr.PausaTime = xanimal.AnimalPausaTime;
+                        StartCoroutine(IstanziaAnimale(xanimal,3));
+                    }
                 }
             }
         }
+    }
 
+    IEnumerator IstanziaAnimale(Animal animale, int intervallo)
+    {
+        // instanzio il primo subito
+        Debug.Log("AVVIO -->  0" + animale.AnimalPrefab.name);
+        Instantiate(animale.AnimalPrefab, this.transform);
+
+        for (int i = 1; i < animale.AnimalCount; i++)
+        {
+            // pausa 
+            yield return new WaitForSecondsRealtime(intervallo);
+            Debug.Log("AVVIO -->  " + i + animale.AnimalPrefab.name);
+            Instantiate(animale.AnimalPrefab, this.transform);
+        }
     }
 
 
+
     //[HideInInspector]
-    public int GetDecimal(float fvalue)
+    private int GetDecimal(float fvalue)
     {
         double dplaces;
 

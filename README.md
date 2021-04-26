@@ -1,6 +1,12 @@
 # SaveTheAnimals
 my first game in Unity
 
+
+0.5e 26.04.2021
+---------------
+elefantini, gestione AnimalManager e AnimalController
+---------------
+
 0.5d 26.04.2021
 ---------------
 compare primo animale: Elefante
