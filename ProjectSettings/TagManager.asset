@@ -8,6 +8,7 @@ TagManager:
   - DEATH
   - WEAPON
   - ENEMY
+  - ANIMAL
   layers:
   - Default
   - TransparentFX

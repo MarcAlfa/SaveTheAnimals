@@ -1,6 +1,11 @@
 # SaveTheAnimals
 my first game in Unity
 
+0.5d 26.04.2021
+---------------
+compare primo animale: Elefante
+---------------
+
 0.5c 25.04.2021
 ---------------
 nuovo back per animali + corretti alcuni bug
