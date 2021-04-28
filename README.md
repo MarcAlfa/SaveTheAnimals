@@ -1,6 +1,10 @@
 # SaveTheAnimals
 my first game in Unity
 
+0.5f 28.04.2021
+---------------
+gestione AnimalManager e AnimalController
+---------------
 
 0.5e 26.04.2021
 ---------------

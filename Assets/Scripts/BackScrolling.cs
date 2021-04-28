@@ -8,6 +8,8 @@ public class BackScrolling : MonoBehaviour
     [SerializeField] private float VelocityX;
     [SerializeField] private float VelocityY;
 
+    public bool isTEST;
+
     private Material xMaterial;
     private Vector2 xOffset;
 
@@ -18,12 +20,17 @@ public class BackScrolling : MonoBehaviour
 
     void Start()
     {
-        xOffset = new Vector2((VelocityX / 100), (VelocityY / 100));
-        
+        if (!isTEST)
+        {
+            xOffset = new Vector2((VelocityX / 100), (VelocityY / 100));
+        }
     }
 
     void Update()
     {
-        xMaterial.mainTextureOffset += xOffset * Time.deltaTime;   
+        if (!isTEST)
+        {
+            xMaterial.mainTextureOffset += xOffset * Time.deltaTime;
+        }
     }
 }

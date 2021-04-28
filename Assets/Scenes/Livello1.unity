@@ -299,6 +299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VelocityX: 0.6
   VelocityY: 0
+  isTEST: 1
 --- !u!23 &24243445
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -909,6 +910,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VelocityX: 0.3
   VelocityY: 0
+  isTEST: 1
 --- !u!23 &443214400
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1068,6 +1070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VelocityX: 13
   VelocityY: 0
+  isTEST: 1
 --- !u!1 &562154243
 GameObject:
   m_ObjectHideFlags: 0
@@ -3143,6 +3146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VelocityX: 1.2
   VelocityY: 0
+  isTEST: 1
 --- !u!23 &1130926847
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3412,20 +3416,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animals:
-  - AnimalPrefab: {fileID: 173283440262914307, guid: 158db73479f11b54bba2d74eadbe89a9, type: 3}
+  - AnimalPrefab: {fileID: 8543889102974848339, guid: 158db73479f11b54bba2d74eadbe89a9, type: 3}
     AnimalCount: 1
-    AnimalStartDelay: 1
-    AnimalRate: 60
+    AnimalStartDelay: 4
+    AnimalRate: 50
     AnimalSpeed: 26
-    AnimalPausaDelay: 30
+    AnimalPausaDelay: 35
     AnimalPausaTime: 5
-  - AnimalPrefab: {fileID: 694609484217789787, guid: 630f0ae0798178c4fbab564a0ffb65f0, type: 3}
+  - AnimalPrefab: {fileID: 6930364438457810360, guid: 630f0ae0798178c4fbab564a0ffb65f0, type: 3}
     AnimalCount: 3
-    AnimalStartDelay: 20
-    AnimalRate: 60
-    AnimalSpeed: 38
+    AnimalStartDelay: 29
+    AnimalRate: 78
+    AnimalSpeed: 45
     AnimalPausaDelay: 0
     AnimalPausaTime: 0
+  - AnimalPrefab: {fileID: 996117017630958849, guid: c14f479b00031a64ca4186cb1be25805, type: 3}
+    AnimalCount: 2
+    AnimalStartDelay: 1
+    AnimalRate: 41
+    AnimalSpeed: 60
+    AnimalPausaDelay: 0
+    AnimalPausaTime: 0
+  - AnimalPrefab: {fileID: 7971538426675660945, guid: a15767452a9b92e47bd8479be2d639eb, type: 3}
+    AnimalCount: 1
+    AnimalStartDelay: 5
+    AnimalRate: 28
+    AnimalSpeed: 30
+    AnimalPausaDelay: 23
+    AnimalPausaTime: 8
+  - AnimalPrefab: {fileID: 8481170542011997710, guid: 8a3b10c76108b3c4399e9077c9eadd47, type: 3}
+    AnimalCount: 3
+    AnimalStartDelay: 3
+    AnimalRate: 80
+    AnimalSpeed: 14
+    AnimalPausaDelay: 30
+    AnimalPausaTime: 4
 --- !u!1 &1280630570
 GameObject:
   m_ObjectHideFlags: 0
@@ -3567,8 +3592,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f40d162b6f8af4e825ff33202dc34e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VelocityX: -1.2
+  VelocityX: -1
   VelocityY: 0
+  isTEST: 1
 --- !u!23 &1446321331
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4453,6 +4479,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VelocityX: 45
   VelocityY: 0
+  isTEST: 0
 --- !u!23 &2026402352
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4765,7 +4792,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3441739553900104396, guid: 5a2cea7e85b773f4f9284d6389c2e91c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.77
+      value: -2.774
       objectReference: {fileID: 0}
     - target: {fileID: 3441739553900104396, guid: 5a2cea7e85b773f4f9284d6389c2e91c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4773,7 +4800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3441739553900104396, guid: 5a2cea7e85b773f4f9284d6389c2e91c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.16
+      value: 1.02
       objectReference: {fileID: 0}
     - target: {fileID: 3441739553900104396, guid: 5a2cea7e85b773f4f9284d6389c2e91c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5001,7 +5028,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8332946306270976371, guid: b779cbd829380934980040b7f874d4b5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.879
+      value: 1.688
       objectReference: {fileID: 0}
     - target: {fileID: 8332946306270976371, guid: b779cbd829380934980040b7f874d4b5, type: 3}
       propertyPath: m_LocalRotation.w
