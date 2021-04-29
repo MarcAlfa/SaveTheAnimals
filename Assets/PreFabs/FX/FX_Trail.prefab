@@ -4847,8 +4847,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1120261657
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_RenderMode: 5
   m_SortMode: 0
@@ -4885,7 +4885,7 @@ GameObject:
   m_Component:
   - component: {fileID: 488863113932931842}
   m_Layer: 14
-  m_Name: fx-Trail
+  m_Name: FX_Trail
   m_TagString: WEAPON
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9695,8 +9695,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1120261657
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0

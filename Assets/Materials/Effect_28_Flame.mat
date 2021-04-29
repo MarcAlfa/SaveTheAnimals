@@ -11,8 +11,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: 1d58a8e283100ea4f8435e923e54553e, type: 3}
   m_ShaderKeywords: IS_SOFT_PARTICLES IS_TEXTURE_BLEND IS_UNITY_PARTICLE_INSTANCING_ENABLED
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
-  m_DoubleSidedGI: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
@@ -84,11 +84,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _BlendDst: 10
+    - _BlendDst: 1
     - _BlendSrc: 5
     - _BumpScale: 1
     - _ColorFactor: 3.5
-    - _Culling: 0
+    - _Culling: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -96,13 +96,15 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Impact: 0
+    - _ImpactFactor: 1
     - _ImpactSize: 0.5
     - _InvFade: 1
     - _LinePass: 0
     - _MaskAnimatedSpeed: 1
-    - _MaskCutOut: 1
+    - _MaskCutOut: 0.821
     - _MaskFade: 0
     - _MaskOffsetFactor: 1
+    - _MaxIndex: 2
     - _Metallic: 0
     - _MixedMove: 0
     - _Mode: 0
@@ -124,19 +126,20 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _TexLength: 1
-    - _TexPosMove: 0
+    - _TexPosMove: 0.044
     - _TexcoordMove: 0
     - _TexcoordMoveStrength: 0
     - _TexcoordMoveUsingCustom: 0
     - _TextureAnimate: 0
+    - _TextureAnimateAdvanced: 0
     - _TextureAnimateSpeed: 1
-    - _TextureAnimateStyle: 1
+    - _TextureAnimateStyle: 1.172
     - _TextureBlend: 1
     - _TextureNoise: 0
     - _UVSec: 0
     - _UseTexAnimation: 0
     - _VertexAnimation: 0
-    - _ZTest2: 2
+    - _ZTest2: 0
     - _ZWrite: 0
     - _xTexcoordMove: 0
     - _yTexcoordMove: 0
@@ -147,3 +150,4 @@ Material:
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _TintColor: {r: 3.714314, g: 0.14847405, b: 0, a: 1}
     - _TintColor2: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8543479175738249742}
   - component: {fileID: 6804737136527783364}
   - component: {fileID: 1589683300426961767}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Effect_Explosion_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4885,7 +4885,7 @@ GameObject:
   - component: {fileID: 971286517457978322}
   - component: {fileID: 7349727709715974682}
   - component: {fileID: 993780934631597830}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Effect_Particle_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9760,7 +9760,7 @@ GameObject:
   - component: {fileID: 4024515490083306775}
   - component: {fileID: 3668467011183952451}
   - component: {fileID: 6063535531103245275}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: FX_HitEffect
   m_TagString: WEAPON
   m_Icon: {fileID: 0}
@@ -9817,7 +9817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Durata: 1
-  ExplosionObject: {fileID: 4001341429126204259, guid: 174ff2a0c929e994cbf5ea923ff8290a, type: 3}
+  ExplosionObject: {fileID: 977594491933785901, guid: 174ff2a0c929e994cbf5ea923ff8290a, type: 3}
 --- !u!65 &6063535531103245275
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9842,7 +9842,7 @@ GameObject:
   - component: {fileID: 1180429365530257511}
   - component: {fileID: 6513994781774167703}
   - component: {fileID: 5909894206458444250}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Effect_Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14716,7 +14716,7 @@ GameObject:
   - component: {fileID: 6137925907947773747}
   - component: {fileID: 2903361607794537523}
   - component: {fileID: 4632001919163526985}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Effect_Particle_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19590,7 +19590,7 @@ GameObject:
   - component: {fileID: 1102473143632700850}
   - component: {fileID: 4767899034228381532}
   - component: {fileID: 7895423370880912012}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Effect_Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24464,7 +24464,7 @@ GameObject:
   - component: {fileID: 1542735934930108479}
   - component: {fileID: 6611724754480052676}
   - component: {fileID: 7941190009939662889}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Effect_Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29338,7 +29338,7 @@ GameObject:
   - component: {fileID: 7266410034448957828}
   - component: {fileID: 868334731699137985}
   - component: {fileID: 2507571630241561824}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Effect_Particle_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}

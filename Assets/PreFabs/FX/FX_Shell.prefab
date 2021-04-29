@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1536347485625797169}
   - component: {fileID: 5497645279272545842}
   m_Layer: 14
-  m_Name: fx-Shell
+  m_Name: FX_Shell
   m_TagString: WEAPON
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,6 +142,22 @@ PrefabInstance:
     - target: {fileID: 6262910108575483921, guid: 97ce0979291d9d54890eaff0f32cc901, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7249256882239741920, guid: 97ce0979291d9d54890eaff0f32cc901, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7249256882239741920, guid: 97ce0979291d9d54890eaff0f32cc901, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1120261657
+      objectReference: {fileID: 0}
+    - target: {fileID: 7361922158495505434, guid: 97ce0979291d9d54890eaff0f32cc901, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7361922158495505434, guid: 97ce0979291d9d54890eaff0f32cc901, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1120261657
       objectReference: {fileID: 0}
     - target: {fileID: 7752381180629069123, guid: 97ce0979291d9d54890eaff0f32cc901, type: 3}
       propertyPath: m_LocalRotation.w

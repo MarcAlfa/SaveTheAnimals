@@ -1,6 +1,13 @@
 # SaveTheAnimals
 my first game in Unity
 
+0.5g 29.04.2021
+---------------
+corretti tutti i sort layer di "FX" e "WEAPON" che altrimenti si vedevano dietro "front" alcune volte
+l impostazione e' nel particle system-render
+c'e' un nuovo sorting layer nel progetto: front  --> viene renderizzato sopra il resto .. quindi ora qui ci vanno fx, weapon e altri effetti che devono andare sopra lo scenario
+---------------
+
 0.5f 28.04.2021
 ---------------
 gestione AnimalManager e AnimalController
