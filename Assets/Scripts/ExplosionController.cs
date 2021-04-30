@@ -32,6 +32,7 @@ public class ExplosionController : MonoBehaviour
         this.transform.position = newpos;
     }
 
+    /*
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Explosion.Coll-enter-> " + collision.collider.name);
@@ -41,6 +42,7 @@ public class ExplosionController : MonoBehaviour
     {
         Debug.Log("Explosion.PColl-> " + other.name);
     }
+    */
 
 
 }

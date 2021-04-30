@@ -32,7 +32,7 @@ public class HitEffectController : MonoBehaviour
         }
     }
 
-
+/*
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log("HitEf.Coll-enter-> " + collision.collider.name);
@@ -42,7 +42,7 @@ public class HitEffectController : MonoBehaviour
     {
         Debug.Log("HitEf.PColl-> " + other.name);
     }
-
+*/
 
 
 }

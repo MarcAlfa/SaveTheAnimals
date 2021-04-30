@@ -54,7 +54,7 @@ public class AnimalController : MonoBehaviour
         }
 
         if (Pausa){
-                Debug.Log("io sono in pausa...");
+                //Debug.Log("io sono in pausa...");
         }
         else{
             xMovement = new Vector3(-1.0f, -1.0f, 0);

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3508607132806427236
+--- !u!1 &5129761969544844859
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3508607132806427256}
-  - component: {fileID: 3508607132806427239}
-  - component: {fileID: 3508607132806427238}
-  - component: {fileID: 3508607132806427237}
-  m_Layer: 12
+  - component: {fileID: 3620346926845375948}
+  - component: {fileID: 8764607318819542122}
+  - component: {fileID: 2921028242398492349}
+  - component: {fileID: 2872849941316279577}
+  - component: {fileID: 6128054935308353811}
+  m_Layer: 6
   m_Name: FX_Nebbia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3508607132806427256
+--- !u!4 &3620346926845375948
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3508607132806427236}
+  m_GameObject: {fileID: 5129761969544844859}
   m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
-  m_LocalPosition: {x: -10.969999, y: 0.34, z: 1.141}
+  m_LocalPosition: {x: 0, y: -0.47, z: 1.141}
   m_LocalScale: {x: 1.2, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
---- !u!198 &3508607132806427239
+--- !u!198 &8764607318819542122
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3508607132806427236}
+  m_GameObject: {fileID: 5129761969544844859}
   serializedVersion: 7
   lengthInSec: 1
   simulationSpeed: 1
@@ -4751,14 +4752,14 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &3508607132806427238
+--- !u!199 &2921028242398492349
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3508607132806427236}
+  m_GameObject: {fileID: 5129761969544844859}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -4817,16 +4818,31 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!65 &3508607132806427237
+--- !u!65 &2872849941316279577
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3508607132806427236}
+  m_GameObject: {fileID: 5129761969544844859}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 5.0643635, y: 0.22806913, z: 3.1299999}
   m_Center: {x: 0.030724207, y: -0.1, z: 0}
+--- !u!114 &6128054935308353811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5129761969544844859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b65cf594505ddd498faf40213975f6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Durata: 30
+  Velocita: 2.5
+  Pausa: 10

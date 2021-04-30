@@ -4477,7 +4477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f40d162b6f8af4e825ff33202dc34e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VelocityX: 45
+  VelocityX: 25
   VelocityY: 0
   isTEST: 0
 --- !u!23 &2026402352
@@ -4558,7 +4558,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90fc4c5776883254fa383ab3e1976e8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeedObject: {fileID: 7000212948575847060, guid: dd2af6b19653c634392370e62e4033de, type: 3}
+  Effetti:
+  - FXPrefab: {fileID: 7000212948575847060, guid: dd2af6b19653c634392370e62e4033de, type: 3}
+    FXStartDelay: 1
+    FXRepeat: 1
+    FXRepeatTime: 2
+  - FXPrefab: {fileID: 5129761969544844859, guid: e06208b1cd3da2d408183a29a0324f4c, type: 3}
+    FXStartDelay: 10
+    FXRepeat: 1
+    FXRepeatTime: 60
 --- !u!4 &2124789851
 Transform:
   m_ObjectHideFlags: 0

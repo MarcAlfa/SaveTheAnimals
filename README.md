@@ -1,6 +1,11 @@
 # SaveTheAnimals
 my first game in Unity
 
+0.5h 30.04.2021
+---------------
+nuvola funzionante - richiamata da FXManager
+---------------
+
 0.5g 29.04.2021
 ---------------
 corretti tutti i sort layer di "FX" e "WEAPON" che altrimenti si vedevano dietro "front" alcune volte

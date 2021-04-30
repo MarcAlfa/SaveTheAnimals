@@ -47,14 +47,14 @@ public class AnimalManager : MonoBehaviour
     IEnumerator IstanziaAnimale(Animal animale, int intervallo)
     {
         // instanzio il primo subito
-        Debug.Log("AVVIO -->  0" + animale.AnimalPrefab.name);
+        //Debug.Log("AVVIO -->  0" + animale.AnimalPrefab.name);
         Instantiate(animale.AnimalPrefab, this.transform);
 
         for (int i = 1; i < animale.AnimalCount; i++)
         {
             // pausa 
             yield return new WaitForSecondsRealtime(intervallo);
-            Debug.Log("AVVIO -->  " + i + animale.AnimalPrefab.name);
+            //Debug.Log("AVVIO -->  " + i + animale.AnimalPrefab.name);
             Instantiate(animale.AnimalPrefab, this.transform);
         }
     }
