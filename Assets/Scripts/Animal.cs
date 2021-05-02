@@ -25,10 +25,8 @@ public class Animal
     [Tooltip("fa pausa dopo quanti secondi dall inizio (0..480)")]
     public int AnimalPausaDelay;
 
-    [Range(0, 10)]
-    [Tooltip("pausa per quanti secondi (1..10)")]
+    [Range(0, 20)]
+    [Tooltip("pausa per quanti secondi (1..20)")]
     public int AnimalPausaTime;
-
-
 
 }

@@ -1,6 +1,13 @@
 # SaveTheAnimals
 my first game in Unity
 
+
+0.5i 01.05.2021
+---------------
+sto lavorando su pause animali, animazioni + versi
+---------------
+
+
 0.5h 30.04.2021
 ---------------
 nuvola funzionante - richiamata da FXManager
