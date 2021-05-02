@@ -3416,6 +3416,7 @@ GameObject:
   - component: {fileID: 1252611784}
   - component: {fileID: 1252611783}
   - component: {fileID: 1252611787}
+  - component: {fileID: 1252611788}
   m_Layer: 6
   m_Name: Piano_animali
   m_TagString: Untagged
@@ -3529,41 +3530,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animals:
-  - AnimalPrefab: {fileID: 5804196386669245708, guid: 158db73479f11b54bba2d74eadbe89a9, type: 3}
+  - AnimalPrefab: {fileID: 7656375175215160589, guid: 158db73479f11b54bba2d74eadbe89a9, type: 3}
     AnimalCount: 1
-    AnimalStartDelay: 3
-    AnimalRate: 52
-    AnimalSpeed: 18
+    AnimalStartDelay: 1
+    AnimalRate: 60
+    AnimalSpeed: 8
     AnimalPausaDelay: 40
     AnimalPausaTime: 9
-  - AnimalPrefab: {fileID: 4907047943336370693, guid: 630f0ae0798178c4fbab564a0ffb65f0, type: 3}
+  - AnimalPrefab: {fileID: 4045511607928656218, guid: 630f0ae0798178c4fbab564a0ffb65f0, type: 3}
     AnimalCount: 3
     AnimalStartDelay: 37
-    AnimalRate: 86
-    AnimalSpeed: 36
+    AnimalRate: 96
+    AnimalSpeed: 16
     AnimalPausaDelay: 0
     AnimalPausaTime: 0
-  - AnimalPrefab: {fileID: 3351855688300293121, guid: 6d4537e7340eda84495eee16957bc2d4, type: 3}
+  - AnimalPrefab: {fileID: 4486574063931838384, guid: 6d4537e7340eda84495eee16957bc2d4, type: 3}
     AnimalCount: 2
     AnimalStartDelay: 1
-    AnimalRate: 54
-    AnimalSpeed: 40
+    AnimalRate: 40
+    AnimalSpeed: 30
     AnimalPausaDelay: 0
     AnimalPausaTime: 0
-  - AnimalPrefab: {fileID: 5922226842705733498, guid: 62cc05dfc12720d458095dd892a69dd3, type: 3}
+  - AnimalPrefab: {fileID: 7510784050352619846, guid: 62cc05dfc12720d458095dd892a69dd3, type: 3}
     AnimalCount: 1
     AnimalStartDelay: 3
-    AnimalRate: 32
-    AnimalSpeed: 15
-    AnimalPausaDelay: 23
+    AnimalRate: 40
+    AnimalSpeed: 6
+    AnimalPausaDelay: 25
     AnimalPausaTime: 9
   - AnimalPrefab: {fileID: 4417993510583221924, guid: bfc9a8884a9c8ec4c9f55eeb13f83dd5, type: 3}
     AnimalCount: 3
     AnimalStartDelay: 26
     AnimalRate: 80
-    AnimalSpeed: 10
-    AnimalPausaDelay: 36
+    AnimalSpeed: 7
+    AnimalPausaDelay: 34
     AnimalPausaTime: 13
+--- !u!95 &1252611788
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252611781}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8b67836df9954da40b0aae5c60e0e670, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1280630570
 GameObject:
   m_ObjectHideFlags: 0

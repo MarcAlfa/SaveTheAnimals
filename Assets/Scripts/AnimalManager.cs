@@ -55,6 +55,7 @@ public class AnimalManager : MonoBehaviour
             // pausa 
             yield return new WaitForSecondsRealtime(intervallo);
             //Debug.Log("AVVIO -->  " + i + animale.AnimalPrefab.name);
+            animale.AnimalPrefab.GetComponent<AnimalController>().PausaDelay -= i + intervallo;            
             Instantiate(animale.AnimalPrefab, this.transform);
         }
     }

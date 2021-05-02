@@ -66,13 +66,14 @@ public class AnimalController : MonoBehaviour
             }
         }
 
-        if ( (xAnimator.GetBool("isWalking") && TimeCurrent > PausaStart + 1f )
-            ||
-             (!xAnimator.GetBool("isWalking") && TimeCurrent <= PausaStart + 2f)
-           )
+        //if ( (xAnimator.GetBool("isWalking") && TimeCurrent >= PausaStart + 1f )
+        //    ||
+        //     (!xAnimator.GetBool("isWalking") && TimeCurrent <= PausaStart + 0.5f)
+        //   )
+        if ( xAnimator.GetBool("isWalking") )
         {
             xMovement = new Vector3(-1.0f, -1.0f, 0);
-            xController.Move(xMovement * (Speed / 10) * Time.deltaTime);
+            xController.Move(xMovement * (Speed / 5) * Time.deltaTime);
         }
 
     }
@@ -80,11 +81,19 @@ public class AnimalController : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        //Debug.Log("animal-on-controller=" + hit.collider.name);
         if (hit.collider.tag == "DEATH" || hit.collider.tag == "WEAPON")
         {
             //Debug.Log(collision.gameObject.tag);
             Destroy(this.gameObject);
+        }
+
+        if (hit.collider.tag == "ANIMAL" )
+        {
+            if (this.Speed > hit.collider.GetComponent<AnimalController>().Speed)
+            {
+                //Debug.Log("impostata velocita a " + hit.collider.GetComponent<AnimalController>().Speed);
+                this.Speed = hit.collider.GetComponent<AnimalController>().Speed;
+            }
         }
     }
 

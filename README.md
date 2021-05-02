@@ -1,6 +1,11 @@
 # SaveTheAnimals
 my first game in Unity
 
+0.5L 02.05.2021
+---------------
+sistemate animazioni pause animali e ciclo tutti animali presenti finora:
+elefante, elefantino, cavallo, daino, giraffa
+---------------
 
 0.5i 01.05.2021
 ---------------

@@ -231,6 +231,16 @@ public class PlayerController : MonoBehaviour
             xController.Move(yMovement);
         }
 
+
+        // se indietro (per esempio urtando nuvola)
+        // lo riporto al solito posto
+        if (xFuriaPosition.x < -22.33f)
+        {
+            xMovement.x = 1f;
+            xController.Move(xMovement * Time.deltaTime);
+        }
+
+
     }
 
 
@@ -259,7 +269,7 @@ public class PlayerController : MonoBehaviour
         if (PlayerStatus == ePlayerStatus.FireAlto)
         {
             yMovement.y = JumpForce;
-            xController.Move(yMovement * (JumpSpeed / 145) * Time.deltaTime);
+            xController.Move(yMovement * (JumpSpeed / 150) * Time.deltaTime);
             return;
         }
 
